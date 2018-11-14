@@ -7,6 +7,15 @@
         <element id="directory" name="classes">
           <element id="module-output" name="ioc" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:4.3.18.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.3.18.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.3.18.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:4.3.18.RELEASE" />
+        </element>
       </element>
     </root>
   </artifact>

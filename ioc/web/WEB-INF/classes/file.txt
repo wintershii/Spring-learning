@@ -1,0 +1,1 @@
+这是通过ServletContextResource获取的资源信息
