@@ -10,10 +10,30 @@
           p:brand="红旗CA72"
           p:maxSpeed="200"/>
 
+    <!--通过构造函数注入Bean-->
+    <bean id="boss" class="com.winter.Boss">
+        <constructor-arg index="0" value="Bob"/>
+        <constructor-arg index="1" value="20000"/>
+        <constructor-arg index="2" ref="car"/>
+    </bean>
+
+
+    <!--构造工厂类的Bean-->
+    <bean id="carFactory" class="com.winter.factory.CarFactory"/>
+
+    <!--通过工厂方法注入,非静态类-->
+    <bean id="car2" factory-bean="carFactory"
+          factory-method="createHongQiCar"/>
+
+    <!--通过静态工厂类构造Bean-->
+    <bean id="boss2" class="com.winter.factory.BossFactory" factory-method="createBigBoss"/>
+
     <!--注册Bean后处理器-->
     <bean id="myBeanPostProcessor" class="com.winter.beanfactory.MyBeanPostProcessor"/>
 
     <!--注册工厂后处理器-->
     <bean id="myBeanFactoryPostProcessor" class="com.winter.context.MyBeanFactoryPostProcessor"/>
+
+
 
 </beans>

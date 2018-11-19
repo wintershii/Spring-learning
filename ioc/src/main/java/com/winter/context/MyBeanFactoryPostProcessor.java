@@ -14,5 +14,4 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
         System.out.println("调用BeanFactoryPostProcessor.postProcessBeanFactory()!");
     }
-
 }
