@@ -1,6 +1,6 @@
 package com.winter.proxy;
 
-public class ForumServiceImpl {
+public class ForumServiceImpl implements ForumService{
 
     public void removeTopic(int topicId) {
         System.out.println("模拟删除Topic记录" + topicId);
