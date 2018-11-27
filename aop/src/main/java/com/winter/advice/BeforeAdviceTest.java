@@ -20,7 +20,7 @@ public class BeforeAdviceTest {
         pf.addAdvice(advice);
 
         Waiter proxy = (Waiter)pf.getProxy();
-        proxy.greeTo("John");
+        proxy.greetTo("John");
         proxy.serveTo("Tom");
     }
 }

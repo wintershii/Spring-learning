@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <bean id="target" class="com.winter.advice.NaiveWaiter"/>
     <bean id="greetingBefore" class="com.winter.advice.GreetingBeforeAdvice"/>
@@ -10,5 +11,49 @@
           p:proxyInterfaces="com.winter.advice.Waiter"
           p:target-ref="target"
           p:interceptorNames="greetingBefore,greetingAfter"/>
+
+    <bean id="sellerTarget" class="com.winter.advisor.Seller"/>
+    <bean id="greetingAdvice" class="com.winter.advisor.GreetingBeforeAdvice"/>
+    <bean id="greetingAdvisor" class="com.winter.advisor.GreetingAdvisor"
+          p:advice-ref="greetingAdvice"/>
+
+    <bean id="parent" abstract="true"
+          class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="greetingAdvisor"
+          p:proxyTargetClass="true"/>
+    <bean id="waiter2" parent="parent" p:target-ref="target"/>
+    <bean id="seller" parent="parent" p:target-ref="sellerTarget"/>
+
+
+    <!--正则表达式匹配要增强的方法-->
+    <bean id="regexpAdvisor"
+          class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"
+          p:advice-ref="greetingAdvice">
+        <property name="patterns">
+            <list>
+                <value>.*greet.*</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="waiter3" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="regexpAdvisor"
+          p:target-ref="target"
+          p:proxyTargetClass="true"/>
+
+    <bean id="dynamicAdvisor"
+          class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut">
+            <bean class="com.winter.advisor.GreetingDynamicPointcut"/>
+        </property>
+        <property name="advice">
+            <bean class="com.winter.advisor.GreetingBeforeAdvice"/>
+        </property>
+    </bean>
+
+    <bean id="waiter4" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="dynamicAdvisor"
+          p:target-ref="target"
+          p:proxyTargetClass="true"/>
 
 </beans>
