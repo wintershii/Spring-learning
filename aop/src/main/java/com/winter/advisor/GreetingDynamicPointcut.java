@@ -49,4 +49,5 @@ public class GreetingDynamicPointcut extends DynamicMethodMatcherPointcut {
         waiter.greetTo("John");
         waiter.greetTo("shidongxuan");
     }
+
 }
