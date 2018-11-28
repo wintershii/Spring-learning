@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--目标Bean-->
+    <bean id="waiter" class="com.winter.anno.FoolWaiter"/>
+    <!--使用了AspectJ注解的切面类-->
+    <bean class="com.winter.anno.PreGreetingAspect"/>
+    <!--自动代理创建器,自动将@AspectJ注解切面类织入目标Bean中-->
+    <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"/>
+
+    <!--基于@AspectJ切面的驱动器-->
+    <!--<aop:aspectj-autoproxy/>-->
+
+</beans>
