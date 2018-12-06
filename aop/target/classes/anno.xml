@@ -6,6 +6,5 @@
 
     <aop:aspectj-autoproxy />
     <bean id="naiveWaiter" class="com.winter.advice.NaiveWaiter" />
-    <bean id="naughtyWaiter" class="com.winter.anno.NaughtyWaiter" />
-    <bean class="com.winter.anno.TestAspect" />
+    <bean class="com.winter.aspect.TestAspect" />
 </beans>
