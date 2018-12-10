@@ -26,7 +26,7 @@ public class UserController {
     @RequestMapping(path = "/handle42/{imageId}")
     public byte[] handle42(@PathVariable("imageId") String imageId) throws IOException {
         System.out.println("load image of" + imageId);
-        Resource res = new ClassPathResource("image.jpg");
+        Resource res = new ClassPathResource("image.png");
         byte[] fileData = FileCopyUtils.copyToByteArray(res.getInputStream());
         return fileData;
     }
