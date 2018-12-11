@@ -21,6 +21,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.1.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.1.3.RELEASE" />
           <element id="artifact" artifact-name="mvc:jar" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
         </element>
       </element>
     </root>

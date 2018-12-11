@@ -1,7 +1,11 @@
 package com.winter;
 
+import com.winter.domain.User;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,5 +33,12 @@ public class UserController {
         Resource res = new ClassPathResource("image.png");
         byte[] fileData = FileCopyUtils.copyToByteArray(res.getInputStream());
         return fileData;
+    }
+
+    @RequestMapping(path = "/handle51")
+    public ResponseEntity<User> handle51(HttpEntity<User> requestEntity) {
+        User user = requestEntity.getBody();
+        user.setUserId(1000);
+        return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 }
