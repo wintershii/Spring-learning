@@ -12,7 +12,7 @@ import java.util.Map;
 public class PersonService {
     private static Map<Integer, Person> map = new HashMap<Integer, Person>();
 
-    private static Integer id = 1;
+    private static Integer id = 0;
 
     static {
         for (int i = 0; i < 10; i++) {
@@ -35,4 +35,20 @@ public class PersonService {
         p.setId(id);
         map.put(id,p);
     }
+
+    //获取一个Person对象
+    public Person get(Integer id) {
+        return map.get(id);
+    }
+
+    //修改人员信息
+    public void update(Person p) {
+        map.put(p.getId(),p);
+    }
+
+    //删除单条记录
+    public void deleteById(Integer id) {
+        map.remove(id);
+    }
+
 }

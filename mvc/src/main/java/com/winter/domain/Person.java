@@ -4,6 +4,15 @@ public class Person {
     private Integer id;
     private String name;
     private Integer age;
+    private String photoPath;
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
+    }
 
     public Integer getId() {
         return id;
