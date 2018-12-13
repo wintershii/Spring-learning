@@ -1,7 +1,10 @@
 package com.winter.domain;
 
+import javax.validation.constraints.Size;
+
 public class Person {
     private Integer id;
+    @Size(min = 6, max = 12,message = "姓名必须大于6个字符，小于12个字符！")
     private String name;
     private Integer age;
     private String photoPath;

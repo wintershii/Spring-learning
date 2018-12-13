@@ -6,8 +6,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.util.FileSystemUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -60,11 +60,18 @@ public class DemoCommandController {
     }
 
     @RequestMapping(path = "/updatePersonList")
-    public String updatePersonInfo(HttpServletRequest request, Person p,
+    public String updatePersonInfo(HttpServletRequest request, @Valid Person p,
+                                   BindingResult bindingResult, Model model,
                                    @RequestParam("photo")MultipartFile photoFile) throws IOException {
         if (p.getId() == null) {
+            p.setPhotoPath("/upload/index.png");
             personService.insert(p);
         } else {
+            if (bindingResult.hasErrors()) {
+                model.addAttribute("bindingResult",bindingResult);
+                model.addAttribute("p",p);
+                return "update";
+            }
             String dir = request.getSession().getServletContext().getRealPath("/") + "/upload/";
             String fileName = photoFile.getOriginalFilename();
             String extName = fileName.substring(fileName.lastIndexOf("."));

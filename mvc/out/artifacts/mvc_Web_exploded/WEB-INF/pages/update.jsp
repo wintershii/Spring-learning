@@ -1,3 +1,4 @@
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: shidongxuan
@@ -11,7 +12,13 @@
     <title>修改信息</title>
 </head>
 <body>
-    <form method="post" action="/user/updatePersonList" enctype="multipart/form-data">
+    <sf:form method="post" action="/user/updatePersonList" enctype="multipart/form-data"
+        modelAttribute="p">
+
+        <sf:hidden path="id"/>
+
+        <fond color="red"><sf:errors path="name"/></fond>
+
         <input type="hidden" name="id" value="${p.id}">
         姓名:<input type="text" name="name" value="${p.name}">
         <br/>
@@ -21,7 +28,7 @@
         <br/>
 
         <input type="submit" value="修改">
-    </form>
+    </sf:form>
 
 </body>
 </html>
