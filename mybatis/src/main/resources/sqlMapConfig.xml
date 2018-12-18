@@ -31,5 +31,6 @@
 
     <mappers>
         <mapper resource="UserMapper.xml"></mapper>
+        <mapper resource="KidMapper.xml"></mapper>
     </mappers>
 </configuration>
